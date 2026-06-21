@@ -1,0 +1,202 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "frame",
+      "id": "root",
+      "x": 0,
+      "y": 0,
+      "layout": "dagre",
+      "width": "fit-content",
+      "height": "fit-content",
+      "padding": 48,
+      "fillColor": "#FFFFFF",
+      "layoutOptions": {
+        "rankdir": "LR",
+        "nodesep": 56,
+        "ranksep": 96,
+        "edges": [
+          ["traffic", "shadow", "只读 dry-run"],
+          ["traffic", "ab", "分流真执行"],
+          ["traffic", "canary", "阶梯放量"],
+          ["shadow", "trace", ""],
+          ["ab", "trace", ""],
+          ["canary", "trace", ""],
+          ["trace", "sig", ""],
+          ["sig", "gate", "放行 / 回滚"],
+          ["sig", "reflow", "候选更差"],
+          ["reflow", "suite", "人工审一道"],
+          ["suite", "traffic", "下一轮变更前置拦截"]
+        ]
+      },
+      "children": [
+        {
+          "type": "frame",
+          "id": "traffic",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [14, 18],
+          "alignItems": "center",
+          "fillColor": "#F0F4FC",
+          "borderColor": "#5178C6",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "traffic_t", "text": "真实告警流量", "fontSize": 15, "textColor": "#1F2329" },
+            { "type": "text", "id": "traffic_s", "text": "线上 DevOps 值班场景", "fontSize": 12, "textColor": "#646A73" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "lanes",
+          "layout": "dagre",
+          "layoutOptions": {
+            "isCluster": true,
+            "clusterTitle": "三路持续度量（对应本章三节）",
+            "clusterTitleColor": "#8569CB"
+          },
+          "fillColor": "#EAE2FE",
+          "borderColor": "#8569CB",
+          "borderWidth": 2,
+          "borderDash": "dashed",
+          "borderRadius": 12,
+          "children": [
+            {
+              "type": "frame",
+              "id": "shadow",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "fillColor": "#FFFFFF",
+              "borderColor": "#8569CB",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "shadow_t", "text": "影子比对", "fontSize": 14, "textColor": "#1F2329" },
+                { "type": "text", "id": "shadow_d", "text": "候选版只读 dry-run\n比对四桶分布 + 门禁拦截", "fontSize": 12, "textColor": "#646A73", "textAlign": "center" },
+                { "type": "text", "id": "shadow_s", "text": "src/shadow.ts", "fontSize": 11, "textColor": "#8569CB" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ab",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "fillColor": "#FFFFFF",
+              "borderColor": "#8569CB",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "ab_t", "text": "A/B 分流", "fontSize": 14, "textColor": "#1F2329" },
+                { "type": "text", "id": "ab_d", "text": "两版真执行\n分流对照 + 显著性判定", "fontSize": 12, "textColor": "#646A73", "textAlign": "center" },
+                { "type": "text", "id": "ab_s", "text": "src/ab.ts", "fontSize": 11, "textColor": "#8569CB" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "canary",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "fillColor": "#FFFFFF",
+              "borderColor": "#8569CB",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "canary_t", "text": "灰度放量", "fontSize": 14, "textColor": "#1F2329" },
+                { "type": "text", "id": "canary_d", "text": "1% 起按风险阶梯放量\n坏了自动回滚", "fontSize": 12, "textColor": "#646A73", "textAlign": "center" },
+                { "type": "text", "id": "canary_s", "text": "src/canary.ts", "fontSize": 11, "textColor": "#8569CB" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "trace",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [12, 16],
+          "alignItems": "center",
+          "fillColor": "#DFF5E5",
+          "borderColor": "#509863",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "trace_t", "text": "AI Tracing 落库", "fontSize": 14, "textColor": "#1F2329" },
+            { "type": "text", "id": "trace_s", "text": "packages/core/src/observability/", "fontSize": 11, "textColor": "#509863" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "sig",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [12, 16],
+          "alignItems": "center",
+          "fillColor": "#DFF5E5",
+          "borderColor": "#509863",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "sig_t", "text": "代理信号对齐口径", "fontSize": 14, "textColor": "#1F2329" },
+            { "type": "text", "id": "sig_d", "text": "三路共用同一把尺子\n线上线下口径一致", "fontSize": 12, "textColor": "#646A73", "textAlign": "center" },
+            { "type": "text", "id": "sig_s", "text": "src/proxy-signals.ts", "fontSize": 11, "textColor": "#509863" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "gate",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [12, 16],
+          "alignItems": "center",
+          "fillColor": "#FEF1CE",
+          "borderColor": "#D4B45B",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "gate_t", "text": "放行 / 回滚决定", "fontSize": 14, "textColor": "#1F2329" },
+            { "type": "text", "id": "gate_d", "text": "门禁向上汇成上线判定", "fontSize": 12, "textColor": "#646A73", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "reflow",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [12, 16],
+          "alignItems": "center",
+          "fillColor": "#FEF1CE",
+          "borderColor": "#D4B45B",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "reflow_t", "text": "信号回流", "fontSize": 14, "textColor": "#1F2329" },
+            { "type": "text", "id": "reflow_d", "text": "候选更差 / 新增违规样本\n带线上事实信号", "fontSize": 12, "textColor": "#646A73", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "suite",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [12, 16],
+          "alignItems": "center",
+          "fillColor": "#FEE3E2",
+          "borderColor": "#D25D5A",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "cylinder", "id": "suite_db", "width": 52, "height": 38, "fillColor": "#FFFFFF", "borderColor": "#D25D5A", "borderWidth": 2 },
+            { "type": "text", "id": "suite_t", "text": "离线回归任务集", "fontSize": 14, "textColor": "#1F2329" },
+            { "type": "text", "id": "suite_d", "text": "规整成带 oracle 的 EvalTask\n第 6 / 16 章", "fontSize": 12, "textColor": "#646A73", "textAlign": "center" }
+          ]
+        }
+      ]
+    }
+  ]
+}

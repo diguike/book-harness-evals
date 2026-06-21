@@ -1,0 +1,17 @@
+{
+  "name": "frontier-caveats",
+  "version": "0.1.0",
+  "private": true,
+  "description": "附录 B 配套：全书来源的三档可信度台账 + lint 校验 + “模块贡献不可加”最小复现",
+  "type": "module",
+  "scripts": {
+    "report": "tsx src/report.ts",
+    "verify": "tsx src/verify.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

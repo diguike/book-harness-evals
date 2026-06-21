@@ -1,0 +1,20 @@
+{
+  "name": "harness-lab-frontend-vs-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "第 14 章配套：前端轨（LLM 模拟用户 + judge + 离线步级匹配）与服务端轨（封闭批跑 + 状态基评分）双轨对照",
+  "type": "module",
+  "scripts": {
+    "compare": "tsx src/compare.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

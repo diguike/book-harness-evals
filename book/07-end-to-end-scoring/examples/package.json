@@ -1,0 +1,21 @@
+{
+  "name": "harness-lab-end-to-end-scoring",
+  "version": "0.1.0",
+  "private": true,
+  "description": "第 7 章配套：并发回放任务集 + 状态基评分 + 多维聚合 + Wilson CI + Mastra scorer 接入",
+  "type": "module",
+  "scripts": {
+    "score": "tsx src/score.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.0.0",
+    "@mastra/evals": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

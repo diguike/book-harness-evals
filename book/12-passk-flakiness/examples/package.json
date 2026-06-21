@@ -1,0 +1,20 @@
+{
+  "name": "harness-lab-passk-flakiness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "第 12 章配套：pass@k / pass^k 估计 + flakiness 抖动量化 + bootstrap CI + 抖动归因对照 + 双重门禁",
+  "type": "module",
+  "scripts": {
+    "stability": "tsx src/stability.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

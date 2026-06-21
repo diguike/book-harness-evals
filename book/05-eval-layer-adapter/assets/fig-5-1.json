@@ -1,0 +1,184 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "frame",
+      "id": "root",
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": "fit-content",
+      "layout": "vertical",
+      "gap": 20,
+      "padding": 28,
+      "fillColor": "#FFFFFF",
+      "children": [
+        {
+          "type": "text",
+          "id": "title",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "harness-lab 评测层通过 adapter 与 harness 解耦",
+          "fontSize": 24,
+          "textAlign": "center",
+          "verticalAlign": "middle"
+        },
+        {
+          "type": "frame",
+          "id": "layers",
+          "width": "fill-container",
+          "height": "fit-content",
+          "layout": "vertical",
+          "alignItems": "stretch",
+          "gap": 18,
+          "padding": 0,
+          "children": [
+            {
+              "type": "frame",
+              "id": "row1",
+              "width": "fill-container",
+              "height": "fit-content",
+              "layout": "horizontal",
+              "gap": 20,
+              "padding": 0,
+              "alignItems": "center",
+              "children": [
+                { "type": "text", "id": "lbl1", "width": 96, "height": "fit-content", "text": "评测层\nharness-lab", "fontSize": 16, "textAlign": "right" },
+                {
+                  "type": "frame",
+                  "id": "layer1",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "fillColor": "#F0F4FC",
+                  "borderColor": "#5178C6",
+                  "borderWidth": 2,
+                  "borderRadius": 8,
+                  "layout": "horizontal",
+                  "gap": 14,
+                  "padding": 20,
+                  "alignItems": "stretch",
+                  "children": [
+                    { "type": "rect", "id": "e1", "width": "fill-container", "height": "fit-content", "text": "整体效果评分\n并发回放+状态基 第7章", "fillColor": "#FFFFFF", "borderColor": "#5178C6", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                    { "type": "rect", "id": "e2", "width": "fill-container", "height": "fit-content", "text": "OTAR 因果 trace\n结构化轨迹 第8章", "fillColor": "#FFFFFF", "borderColor": "#5178C6", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                    { "type": "rect", "id": "e3", "width": "fill-container", "height": "fit-content", "text": "模块归因\n消融·Shapley·反事实 第9-11章", "fillColor": "#FFFFFF", "borderColor": "#5178C6", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                    { "type": "rect", "id": "e4", "width": "fill-container", "height": "fit-content", "text": "稳定性 / 人在回路\npass^k·Ask-F1 第12-13章", "fillColor": "#FFFFFF", "borderColor": "#5178C6", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                    { "type": "rect", "id": "e5", "width": "fill-container", "height": "fit-content", "text": "防劣化闭环\nchange manifest 第15-16章", "fillColor": "#FFFFFF", "borderColor": "#5178C6", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "row2",
+              "width": "fill-container",
+              "height": "fit-content",
+              "layout": "horizontal",
+              "gap": 20,
+              "padding": 0,
+              "alignItems": "center",
+              "children": [
+                { "type": "text", "id": "lbl2", "width": 96, "height": "fit-content", "text": "适配层\nadapter", "fontSize": 16, "textAlign": "right" },
+                {
+                  "type": "frame",
+                  "id": "layer2",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "fillColor": "#EAE2FE",
+                  "borderColor": "#8569CB",
+                  "borderWidth": 2,
+                  "borderRadius": 8,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "alignItems": "stretch",
+                  "children": [
+                    { "type": "text", "id": "a0", "width": "fill-container", "height": "fit-content", "text": "HarnessAdapter —— 评测层与 harness 的唯一耦合面（换载体只改这一层，见附录 A）", "fontSize": 14, "textAlign": "center" },
+                    {
+                      "type": "frame",
+                      "id": "arow",
+                      "width": "fill-container",
+                      "height": "fit-content",
+                      "layout": "horizontal",
+                      "gap": 14,
+                      "padding": 0,
+                      "alignItems": "stretch",
+                      "children": [
+                        { "type": "rect", "id": "a1", "width": "fill-container", "height": "fit-content", "text": "run(task)\n→ RunResult", "fillColor": "#FFFFFF", "borderColor": "#8569CB", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                        { "type": "rect", "id": "a2", "width": "fill-container", "height": "fit-content", "text": "modules()\n可消融模块清单", "fillColor": "#FFFFFF", "borderColor": "#8569CB", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                        { "type": "rect", "id": "a3", "width": "fill-container", "height": "fit-content", "text": "withConfig(patch)\n构造消融变体", "fillColor": "#FFFFFF", "borderColor": "#8569CB", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                        { "type": "rect", "id": "a4", "width": "fill-container", "height": "fit-content", "text": "RunResult\nfinalState·steps·trace·askEvents·cost", "fillColor": "#FFFFFF", "borderColor": "#8569CB", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "row3",
+              "width": "fill-container",
+              "height": "fit-content",
+              "layout": "horizontal",
+              "gap": 20,
+              "padding": 0,
+              "alignItems": "center",
+              "children": [
+                { "type": "text", "id": "lbl3", "width": 96, "height": "fit-content", "text": "harness\nMastra", "fontSize": 16, "textAlign": "right" },
+                {
+                  "type": "frame",
+                  "id": "layer3",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "fillColor": "#DFF5E5",
+                  "borderColor": "#509863",
+                  "borderWidth": 2,
+                  "borderRadius": 8,
+                  "layout": "horizontal",
+                  "gap": 14,
+                  "padding": 20,
+                  "alignItems": "stretch",
+                  "children": [
+                    { "type": "rect", "id": "h1", "width": "fill-container", "height": "fit-content", "text": "编排 orchestration\n调度·分支·终止", "fillColor": "#FFFFFF", "borderColor": "#509863", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                    { "type": "rect", "id": "h2", "width": "fill-container", "height": "fit-content", "text": "工具 tools\n只读查询·高危写·升级", "fillColor": "#FFFFFF", "borderColor": "#509863", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                    { "type": "rect", "id": "h3", "width": "fill-container", "height": "fit-content", "text": "记忆 memory\n历史·召回·摘要", "fillColor": "#FFFFFF", "borderColor": "#509863", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" },
+                    { "type": "rect", "id": "h4", "width": "fill-container", "height": "fit-content", "text": "工作流 workflow\n多步·暂停等人·持久化", "fillColor": "#FFFFFF", "borderColor": "#509863", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "row4",
+              "width": "fill-container",
+              "height": "fit-content",
+              "layout": "horizontal",
+              "gap": 20,
+              "padding": 0,
+              "alignItems": "center",
+              "children": [
+                { "type": "text", "id": "lbl4", "width": 96, "height": "fit-content", "text": "model", "fontSize": 16, "textAlign": "right" },
+                {
+                  "type": "frame",
+                  "id": "layer4",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "fillColor": "#FEF1CE",
+                  "borderColor": "#D4B45B",
+                  "borderWidth": 2,
+                  "borderRadius": 8,
+                  "layout": "horizontal",
+                  "gap": 14,
+                  "padding": 20,
+                  "alignItems": "stretch",
+                  "children": [
+                    { "type": "rect", "id": "m1", "width": "fill-container", "height": "fit-content", "text": "model —— 给定上下文，预测下一段 token（系统里最小的一块，benchmark 分高 ≠ 系统可靠）", "fillColor": "#FFFFFF", "borderColor": "#D4B45B", "borderRadius": 8, "borderWidth": 2, "fontSize": 13, "textAlign": "center", "verticalAlign": "middle" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

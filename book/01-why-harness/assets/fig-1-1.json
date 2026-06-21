@@ -1,0 +1,238 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "frame",
+      "id": "root",
+      "x": 0,
+      "y": 0,
+      "width": 1180,
+      "height": "fit-content",
+      "layout": "vertical",
+      "gap": 22,
+      "padding": 28,
+      "fillColor": "#FFFFFF",
+      "children": [
+        {
+          "type": "text",
+          "id": "title",
+          "width": "fill-container",
+          "height": "fit-content",
+          "text": "harness 的四层结构与 model 的关系",
+          "fontSize": 24,
+          "textAlign": "center",
+          "verticalAlign": "middle"
+        },
+        {
+          "type": "frame",
+          "id": "row-harness",
+          "width": "fill-container",
+          "height": "fit-content",
+          "layout": "horizontal",
+          "gap": 20,
+          "padding": 0,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "lbl-harness",
+              "width": 110,
+              "height": "fit-content",
+              "text": "harness\n本书要评和改的外圈",
+              "fontSize": 16,
+              "textAlign": "right"
+            },
+            {
+              "type": "frame",
+              "id": "harness",
+              "width": "fill-container",
+              "height": "fit-content",
+              "fillColor": "#F0F4FC",
+              "borderColor": "#5178C6",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "layout": "horizontal",
+              "gap": 16,
+              "padding": 20,
+              "alignItems": "stretch",
+              "children": [
+                {
+                  "type": "rect",
+                  "id": "orch",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "text": "编排 orchestration\n调度子 agent / 分支 / 终止\nworkflows/create.ts",
+                  "fillColor": "#FFFFFF",
+                  "borderColor": "#5178C6",
+                  "borderRadius": 8,
+                  "borderWidth": 2,
+                  "fontSize": 13,
+                  "textAlign": "center",
+                  "verticalAlign": "middle"
+                },
+                {
+                  "type": "rect",
+                  "id": "tools",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "text": "工具 tools\n只读查询 / 高危写 / 升级\nharness/tools.ts",
+                  "fillColor": "#FFFFFF",
+                  "borderColor": "#5178C6",
+                  "borderRadius": 8,
+                  "borderWidth": 2,
+                  "fontSize": 13,
+                  "textAlign": "center",
+                  "verticalAlign": "middle"
+                },
+                {
+                  "type": "rect",
+                  "id": "memory",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "text": "记忆 memory\n历史 / 召回 / 摘要\nmemory/memory.ts",
+                  "fillColor": "#FFFFFF",
+                  "borderColor": "#5178C6",
+                  "borderRadius": 8,
+                  "borderWidth": 2,
+                  "fontSize": 13,
+                  "textAlign": "center",
+                  "verticalAlign": "middle"
+                },
+                {
+                  "type": "rect",
+                  "id": "workflow",
+                  "width": "fill-container",
+                  "height": "fit-content",
+                  "text": "工作流 workflow\n多步 / 暂停等人 / 持久化\nworkflows/step.ts",
+                  "fillColor": "#FFFFFF",
+                  "borderColor": "#5178C6",
+                  "borderRadius": 8,
+                  "borderWidth": 2,
+                  "fontSize": 13,
+                  "textAlign": "center",
+                  "verticalAlign": "middle"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "row-model",
+          "width": "fill-container",
+          "height": "fit-content",
+          "layout": "horizontal",
+          "gap": 20,
+          "padding": 0,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "lbl-model",
+              "width": 110,
+              "height": "fit-content",
+              "text": "model\n被包在中间的一小块",
+              "fontSize": 16,
+              "textAlign": "right"
+            },
+            {
+              "type": "frame",
+              "id": "model-band",
+              "width": "fill-container",
+              "height": "fit-content",
+              "layout": "horizontal",
+              "gap": 0,
+              "padding": 0,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rect",
+                  "id": "model",
+                  "width": 420,
+                  "height": "fit-content",
+                  "text": "model\n给定上下文，预测下一段 token\n（决定系统行为的不是它）",
+                  "fillColor": "#FEF1CE",
+                  "borderColor": "#D4B45B",
+                  "borderRadius": 8,
+                  "borderWidth": 2,
+                  "fontSize": 14,
+                  "textAlign": "center",
+                  "verticalAlign": "middle"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "orch",
+        "to": "model",
+        "fromAnchor": "bottom",
+        "toAnchor": "top",
+        "lineShape": "polyline",
+        "lineColor": "#5178C6",
+        "lineWidth": 2,
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "tools",
+        "to": "model",
+        "fromAnchor": "bottom",
+        "toAnchor": "top",
+        "lineShape": "polyline",
+        "lineColor": "#5178C6",
+        "lineWidth": 2,
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "memory",
+        "to": "model",
+        "fromAnchor": "bottom",
+        "toAnchor": "top",
+        "lineShape": "polyline",
+        "lineColor": "#5178C6",
+        "lineWidth": 2,
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "workflow",
+        "to": "model",
+        "fromAnchor": "bottom",
+        "toAnchor": "top",
+        "lineShape": "polyline",
+        "lineColor": "#5178C6",
+        "lineWidth": 2,
+        "endArrow": "arrow"
+      }
+    },
+    {
+      "type": "connector",
+      "connector": {
+        "from": "tools",
+        "to": "workflow",
+        "fromAnchor": "top",
+        "toAnchor": "top",
+        "lineShape": "curve",
+        "lineColor": "#C84A4A",
+        "lineWidth": 2,
+        "lineStyle": "dashed",
+        "startArrow": "arrow",
+        "endArrow": "arrow",
+        "label": "本章故障的病灶：工具与工作流的衔接处"
+      }
+    }
+  ]
+}

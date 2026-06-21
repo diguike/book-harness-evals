@@ -1,0 +1,21 @@
+{
+  "name": "example-11-counterfactual-rca",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "第 11 章配套示例：在 OTAR 因果图上做反事实单点干预，定位单次失败的根因步",
+  "scripts": {
+    "start": "tsx src/run.ts",
+    "start:mastra": "tsx src/rerun-mastra.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

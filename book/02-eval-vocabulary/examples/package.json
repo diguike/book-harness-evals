@@ -1,0 +1,21 @@
+{
+  "name": "example-02-eval-vocabulary",
+  "private": true,
+  "type": "module",
+  "description": "第 2 章配套：术语地图四组核心计算（确定性 vs 质量、pass^k、消融不可加、Wilson 区间）",
+  "scripts": {
+    "code-vs-quality": "tsx src/code-vs-quality.ts",
+    "passk": "tsx src/passk.ts",
+    "ablation": "tsx src/ablation-toy.ts",
+    "wilson": "tsx src/wilson.ts"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.0.0",
+    "@mastra/evals": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

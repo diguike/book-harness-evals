@@ -1,0 +1,16 @@
+{
+  "name": "swap-harness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "附录 A 配套：不依赖 Mastra 的 stub adapter，实现同一 HarnessAdapter 接口，证明换载体只需换 adapter",
+  "type": "module",
+  "scripts": {
+    "verify": "tsx src/verify-swap.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

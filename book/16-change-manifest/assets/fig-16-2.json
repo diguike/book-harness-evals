@@ -1,0 +1,344 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "frame",
+      "id": "root",
+      "x": 0,
+      "y": 0,
+      "layout": "dagre",
+      "width": "fit-content",
+      "height": "fit-content",
+      "padding": 48,
+      "fillColor": "#FFFFFF",
+      "borderColor": "#FFFFFF",
+      "borderWidth": 1,
+      "borderRadius": 8,
+      "layoutOptions": {
+        "rankdir": "TB",
+        "nodesep": 64,
+        "ranksep": 84,
+        "edges": [
+          ["A", "B", "声明 touches / predictions"],
+          ["B", "C", "回归子集 subset"],
+          ["C", "D", "basePass / candPass"],
+          ["C", "E", "basePass / candPass"],
+          ["C", "F", "basePass / candPass"],
+          ["D", "G", "有退化"],
+          ["D", "H", "无退化"],
+          ["E", "H", ""],
+          ["F", "H", ""],
+          ["H", "I", "是"],
+          ["H", "J", "否"],
+          ["G", "L", "评分回流"],
+          ["I", "L", "评分回流"],
+          ["J", "L", "评分回流"],
+          ["CRON", "K", "定时触发"],
+          ["K", "M", "发现漏网退化"],
+          ["M", "B", "补全依赖"],
+          ["K", "L", "评分回流"],
+          ["L", "ONLINE", "接力线上流量"]
+        ]
+      },
+      "children": [
+        {
+          "type": "frame",
+          "id": "gate_zone",
+          "layout": "dagre",
+          "layoutOptions": {
+            "isCluster": true,
+            "rankdir": "TB",
+            "nodesep": 60,
+            "ranksep": 76,
+            "clusterTitle": "定向门禁（每个 PR 同步触发）",
+            "clusterTitleColor": "#5178C6"
+          },
+          "fillColor": "#F0F4FC",
+          "borderColor": "#5178C6",
+          "borderWidth": 2,
+          "borderDash": "dashed",
+          "borderRadius": 12,
+          "padding": 28,
+          "children": [
+            {
+              "type": "frame",
+              "id": "A",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 250,
+              "height": "fit-content",
+              "fillColor": "#FFFFFF",
+              "borderColor": "#5178C6",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "A_t", "width": "fill-container", "height": "fit-content", "text": "一次 harness 改动 + change manifest", "fontSize": 14, "textAlign": "center", "textColor": "#1F2D4D" },
+                { "type": "text", "id": "A_s", "width": "fill-container", "height": "fit-content", "text": "manifest.ts 的 ChangeManifest", "fontSize": 11, "textAlign": "center", "textColor": "#5178C6" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "B",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 250,
+              "height": "fit-content",
+              "fillColor": "#FFFFFF",
+              "borderColor": "#5178C6",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "B_t", "width": "fill-container", "height": "fit-content", "text": "据 changedModules 选回归子集", "fontSize": 14, "textAlign": "center", "textColor": "#1F2D4D" },
+                { "type": "text", "id": "B_s", "width": "fill-container", "height": "fit-content", "text": "selectRegression · manifest.ts", "fontSize": 11, "textAlign": "center", "textColor": "#5178C6" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 270,
+              "height": "fit-content",
+              "fillColor": "#EAE2FE",
+              "borderColor": "#8569CB",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "C_t", "width": "fill-container", "height": "fit-content", "text": "新旧两版各跑子集 · 状态基评分", "fontSize": 14, "textAlign": "center", "textColor": "#3A2A5C" },
+                { "type": "text", "id": "C_s", "width": "fill-container", "height": "fit-content", "text": "scoreState · state-scorer.ts", "fontSize": 11, "textAlign": "center", "textColor": "#8569CB" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "D",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 14],
+              "alignItems": "center",
+              "width": 200,
+              "height": "fit-content",
+              "fillColor": "#FEF1CE",
+              "borderColor": "#D4B45B",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "D_t", "width": "fill-container", "height": "fit-content", "text": "退化检测：硬否决", "fontSize": 14, "textAlign": "center", "textColor": "#5C4A12" },
+                { "type": "text", "id": "D_s", "width": "fill-container", "height": "fit-content", "text": "base 过且 cand 挂 → 拦", "fontSize": 11, "textAlign": "center", "textColor": "#A8862E" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "E",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 14],
+              "alignItems": "center",
+              "width": 200,
+              "height": "fit-content",
+              "fillColor": "#FEF1CE",
+              "borderColor": "#D4B45B",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "E_t", "width": "fill-container", "height": "fit-content", "text": "改进显著性：双比例 z 检验", "fontSize": 14, "textAlign": "center", "textColor": "#5C4A12" },
+                { "type": "text", "id": "E_s", "width": "fill-container", "height": "fit-content", "text": "twoProportionZTest · stats.ts", "fontSize": 11, "textAlign": "center", "textColor": "#A8862E" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "F",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 14],
+              "alignItems": "center",
+              "width": 200,
+              "height": "fit-content",
+              "fillColor": "#FEF1CE",
+              "borderColor": "#D4B45B",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "F_t", "width": "fill-container", "height": "fit-content", "text": "逐条预测裁决", "fontSize": 14, "textAlign": "center", "textColor": "#5C4A12" },
+                { "type": "text", "id": "F_s", "width": "fill-container", "height": "fit-content", "text": "fix / keep 是否兑现", "fontSize": 11, "textAlign": "center", "textColor": "#A8862E" }
+              ]
+            },
+            {
+              "type": "diamond",
+              "id": "H",
+              "text": "改进显著\n且预测全兑现?",
+              "width": 180,
+              "height": 110,
+              "fillColor": "#FEF1CE",
+              "borderColor": "#D4B45B",
+              "borderWidth": 2,
+              "fontSize": 13,
+              "textColor": "#5C4A12",
+              "textAlign": "center"
+            },
+            {
+              "type": "frame",
+              "id": "G",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 190,
+              "height": "fit-content",
+              "fillColor": "#FBE3E0",
+              "borderColor": "#C0564B",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "G_t", "width": "fill-container", "height": "fit-content", "text": "ROLLBACK 回滚", "fontSize": 14, "textAlign": "center", "textColor": "#6E241C" },
+                { "type": "text", "id": "G_s", "width": "fill-container", "height": "fit-content", "text": "非零退出码 · runGate", "fontSize": 11, "textAlign": "center", "textColor": "#C0564B" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "I",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 190,
+              "height": "fit-content",
+              "fillColor": "#DFF5E5",
+              "borderColor": "#509863",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "I_t", "width": "fill-container", "height": "fit-content", "text": "PASS 放行", "fontSize": 14, "textAlign": "center", "textColor": "#1F5232" },
+                { "type": "text", "id": "I_s", "width": "fill-container", "height": "fit-content", "text": "确有改进", "fontSize": 11, "textAlign": "center", "textColor": "#509863" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "J",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 210,
+              "height": "fit-content",
+              "fillColor": "#DFF5E5",
+              "borderColor": "#509863",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "J_t", "width": "fill-container", "height": "fit-content", "text": "PASS_NO_GAIN 放行", "fontSize": 14, "textAlign": "center", "textColor": "#1F5232" },
+                { "type": "text", "id": "J_s", "width": "fill-container", "height": "fit-content", "text": "不计收益", "fontSize": 11, "textAlign": "center", "textColor": "#509863" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cron_zone",
+          "layout": "dagre",
+          "layoutOptions": {
+            "isCluster": true,
+            "rankdir": "TB",
+            "nodesep": 60,
+            "ranksep": 72,
+            "clusterTitle": "周期性全量回归（cron 定时触发）",
+            "clusterTitleColor": "#509863"
+          },
+          "fillColor": "#EFF7F1",
+          "borderColor": "#509863",
+          "borderWidth": 2,
+          "borderDash": "dashed",
+          "borderRadius": 12,
+          "padding": 28,
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "CRON",
+              "text": "cron 定时触发",
+              "width": 150,
+              "height": 70,
+              "fillColor": "#FFFFFF",
+              "borderColor": "#509863",
+              "borderWidth": 2,
+              "fontSize": 13,
+              "textColor": "#1F5232",
+              "textAlign": "center"
+            },
+            {
+              "type": "frame",
+              "id": "K",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 220,
+              "height": "fit-content",
+              "fillColor": "#FFFFFF",
+              "borderColor": "#509863",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "K_t", "width": "fill-container", "height": "fit-content", "text": "周期性全量回放 · 跑全任务集", "fontSize": 14, "textAlign": "center", "textColor": "#1F5232" },
+                { "type": "text", "id": "K_s", "width": "fill-container", "height": "fit-content", "text": "跳过 selectRegression · 喂全 taskSuite", "fontSize": 11, "textAlign": "center", "textColor": "#509863" }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "M",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [12, 16],
+              "alignItems": "center",
+              "width": 200,
+              "height": "fit-content",
+              "fillColor": "#FFFFFF",
+              "borderColor": "#509863",
+              "borderWidth": 2,
+              "borderRadius": 8,
+              "children": [
+                { "type": "text", "id": "M_t", "width": "fill-container", "height": "fit-content", "text": "反哺 touches 标签", "fontSize": 14, "textAlign": "center", "textColor": "#1F5232" },
+                { "type": "text", "id": "M_s", "width": "fill-container", "height": "fit-content", "text": "补漏标的模块依赖", "fontSize": 11, "textAlign": "center", "textColor": "#509863" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "cylinder",
+          "id": "L",
+          "text": "评分历史库",
+          "width": 150,
+          "height": 90,
+          "fillColor": "#EAE2FE",
+          "borderColor": "#8569CB",
+          "borderWidth": 2,
+          "fontSize": 14,
+          "textColor": "#3A2A5C",
+          "textAlign": "center"
+        },
+        {
+          "type": "frame",
+          "id": "ONLINE",
+          "layout": "vertical",
+          "gap": 4,
+          "padding": [12, 16],
+          "alignItems": "center",
+          "width": 230,
+          "height": "fit-content",
+          "fillColor": "#F0F4FC",
+          "borderColor": "#5178C6",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "ON_t", "width": "fill-container", "height": "fit-content", "text": "第 15 章 · 线上持续评估", "fontSize": 14, "textAlign": "center", "textColor": "#1F2D4D" },
+            { "type": "text", "id": "ON_s", "width": "fill-container", "height": "fit-content", "text": "影子流量比对 / A·B 分流 / 灰度门限", "fontSize": 11, "textAlign": "center", "textColor": "#5178C6" }
+          ]
+        }
+      ]
+    }
+  ]
+}

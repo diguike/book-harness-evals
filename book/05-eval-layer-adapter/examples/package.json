@@ -1,0 +1,21 @@
+{
+  "name": "harness-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "第 5 章配套：harness-lab 评测层骨架 + Mastra 值班助手适配器",
+  "type": "module",
+  "scripts": {
+    "smoke": "tsx src/smoke.ts",
+    "smoke:mock": "tsx src/smoke.ts --mock",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

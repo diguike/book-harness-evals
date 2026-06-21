@@ -1,0 +1,20 @@
+{
+  "name": "harness-lab-change-manifest",
+  "version": "0.1.0",
+  "private": true,
+  "description": "第 16 章配套：change manifest schema + 据 manifest 选回归子集 + 带显著性门禁的防劣化闭环",
+  "type": "module",
+  "scripts": {
+    "gate": "tsx src/gate.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "example-04-eval-as-experiment",
+  "private": true,
+  "type": "module",
+  "description": "第 4 章配套：把评测当统计实验——Wilson 区间 / 样本量估算 / 双比例显著性检验 / judge 噪声估计 / A/B 实验流程",
+  "scripts": {
+    "stats": "tsx src/stats-demo.ts",
+    "judge": "tsx src/judge-noise.ts",
+    "ab": "tsx src/ab-experiment.ts"
+  },
+  "_note": "本章只做纯统计计算，不依赖 @mastra/core；第 5 章接入真实 adapter（MastraOncallAdapter）时再添加 @mastra/core ^1.0.0。zod 也仅为与后续章节保持一致预留，本章四个脚本均未 import。",
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "version": 2,
+  "nodes": [
+    {
+      "type": "frame",
+      "id": "root",
+      "x": 0,
+      "y": 0,
+      "layout": "dagre",
+      "width": "fit-content",
+      "height": "fit-content",
+      "padding": 48,
+      "fillColor": "#FFFFFF",
+      "layoutOptions": {
+        "rankdir": "LR",
+        "nodesep": 50,
+        "ranksep": 96,
+        "edges": [
+          ["suite", "runner", "EvalTask[]"],
+          ["runner", "adapter", "run(task,{seed})"],
+          ["adapter", "scorer", "RunResult"],
+          ["runner", "llm", "可选·judge key"],
+          ["scorer", "aggregate", "StateScore"],
+          ["adapter", "aggregate", "RunResult[]+tasks"],
+          ["llm", "aggregate", "相关性分"],
+          ["aggregate", "report", "SuiteReport"]
+        ]
+      },
+      "children": [
+        {
+          "type": "frame",
+          "id": "suite",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [14, 18],
+          "alignItems": "center",
+          "fillColor": "#F0F4FC",
+          "borderColor": "#5178C6",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "suite_t", "text": "任务集 taskSuite", "fontSize": 15, "textColor": "#1F2329", "textAlign": "center" },
+            { "type": "text", "id": "suite_d", "text": "含 tier / oracle", "fontSize": 12, "textColor": "#5178C6", "textAlign": "center" },
+            { "type": "text", "id": "suite_s", "text": "task-suite.ts", "fontSize": 11, "textColor": "#8A94A6", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "runner",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [14, 18],
+          "alignItems": "center",
+          "fillColor": "#EAE2FE",
+          "borderColor": "#8569CB",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "runner_t", "text": "并发 runner", "fontSize": 15, "textColor": "#1F2329", "textAlign": "center" },
+            { "type": "text", "id": "runner_d", "text": "固定 worker 池 · 限并发\n单任务失败就地兜住", "fontSize": 12, "textColor": "#8569CB", "textAlign": "center" },
+            { "type": "text", "id": "runner_s", "text": "runner.ts · runSuite", "fontSize": 11, "textColor": "#8A94A6", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "adapter",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [14, 18],
+          "alignItems": "center",
+          "fillColor": "#FFFFFF",
+          "borderColor": "#8569CB",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "adapter_t", "text": "适配器 adapter.run", "fontSize": 15, "textColor": "#1F2329", "textAlign": "center" },
+            { "type": "text", "id": "adapter_d", "text": "逐任务隔离 world 回放", "fontSize": 12, "textColor": "#8569CB", "textAlign": "center" },
+            { "type": "text", "id": "adapter_s", "text": "mock / mastra-adapter", "fontSize": 11, "textColor": "#8A94A6", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "scorer",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [14, 18],
+          "alignItems": "center",
+          "fillColor": "#FFFFFF",
+          "borderColor": "#509863",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "scorer_t", "text": "状态基评分 scoreState", "fontSize": 15, "textColor": "#1F2329", "textAlign": "center" },
+            { "type": "text", "id": "scorer_d", "text": "finalState vs\noracle.expectedFinalState\n判 pass / safe / reasons", "fontSize": 12, "textColor": "#509863", "textAlign": "center" },
+            { "type": "text", "id": "scorer_s", "text": "state-scorer.ts · scoreState", "fontSize": 11, "textColor": "#8A94A6", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "llm",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [12, 16],
+          "alignItems": "center",
+          "fillColor": "#FFFFFF",
+          "borderColor": "#8569CB",
+          "borderWidth": 2,
+          "borderDash": "dashed",
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "llm_t", "text": "Mastra llm scorer", "fontSize": 14, "textColor": "#1F2329", "textAlign": "center" },
+            { "type": "text", "id": "llm_d", "text": "可插拔附加维度（可选）", "fontSize": 12, "textColor": "#8569CB", "textAlign": "center" },
+            { "type": "text", "id": "llm_s", "text": "mastra-scorer.ts · createScorer", "fontSize": 11, "textColor": "#8A94A6", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "aggregate",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [14, 18],
+          "alignItems": "center",
+          "fillColor": "#DFF5E5",
+          "borderColor": "#509863",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "agg_t", "text": "多维聚合 aggregate", "fontSize": 15, "textColor": "#1F2329", "textAlign": "center" },
+            { "type": "text", "id": "agg_d", "text": "每维配 Wilson CI\n按 tier 分层 · 算成本分位", "fontSize": 12, "textColor": "#509863", "textAlign": "center" },
+            { "type": "text", "id": "agg_s", "text": "aggregate.ts · aggregate", "fontSize": 11, "textColor": "#8A94A6", "textAlign": "center" }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "report",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [14, 18],
+          "alignItems": "center",
+          "fillColor": "#FEF1CE",
+          "borderColor": "#D4B45B",
+          "borderWidth": 2,
+          "borderRadius": 8,
+          "children": [
+            { "type": "text", "id": "report_t", "text": "SuiteReport", "fontSize": 15, "textColor": "#1F2329", "textAlign": "center" },
+            { "type": "text", "id": "report_d", "text": "正确率 / 安全率 / 成本\n均带 Wilson CI · 含分层", "fontSize": 12, "textColor": "#B58A22", "textAlign": "center" },
+            { "type": "text", "id": "report_s", "text": "stats.ts · wilsonInterval", "fontSize": 11, "textColor": "#8A94A6", "textAlign": "center" }
+          ]
+        }
+      ]
+    }
+  ]
+}
