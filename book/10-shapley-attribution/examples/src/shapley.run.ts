@@ -83,7 +83,7 @@ async function main(): Promise<void> {
   console.log('\n读法提示：');
   console.log('  · φ 高于 Δ 的模块（searchRunbook / reflection）有冗余——满配下被伙伴盖住，单消融低估了它；');
   console.log('  · Δ 高于 φ 的模块（instructions）有互补——单消融把协同一并拿掉了，高估了它的纯贡献；');
-  console.log('  · 误差随 samples 增大单调收窄，印证蒙特卡洛是无偏估计。\n');
+  console.log('  · 误差整体随 samples 增大趋窄（标准误差按 1/√samples 收敛，单次运行的路径不保证单调），估计值围绕精确值波动，印证蒙特卡洛是无偏估计。\n');
 }
 
 main().catch((err) => {
